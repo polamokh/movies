@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="search">Search</string>
+    <string name="can_not_load_more_movies">Can not load more movies.</string>
+    <string name="retry">Retry</string>
+    <string name="something_wrong">Something went wrong check your connection and try again.</string>
+    <string name="no_available_movies">No available movies.</string>
+    <string name="votes">Votes</string>
+    <string name="average">Average</string>
+    <string name="genres">Genres</string>
+    <string name="overview">Overview</string>
+
+    <string name="rating_placeholder">%1$.1f/10</string>
+    <string name="movie_details">Movie Details</string>
+    <string name="title">Title</string>
+    <string name="movie_image">Movie image</string>
+    <string name="information_icon">Information icon</string>
+</resources>

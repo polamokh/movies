@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="me.polamokh.movies.domain.DetailedMovie" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="72dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/movie_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/movie_image"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:contentDescription="@string/movie_image"
+                    app:image="@{movie.imageBaseUrl}"
+                    app:layout_constraintDimensionRatio="2:3"
+                    app:layout_constraintEnd_toStartOf="@id/guideline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@mipmap/ic_launcher" />
+
+                <TextView
+                    android:id="@+id/votes_count"
+                    style="@style/Widget.App.TextView.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:text="@{String.valueOf(movie.voteCount)}"
+                    android:textSize="26sp"
+                    app:drawableStartCompat="@drawable/ic_groups"
+                    app:layout_constraintBottom_toTopOf="@id/votes_count_label"
+                    app:layout_constraintEnd_toEndOf="@id/votes_count_group"
+                    app:layout_constraintStart_toStartOf="@id/votes_count_group"
+                    app:layout_constraintTop_toTopOf="@id/votes_count_group"
+                    tools:text="51544" />
+
+                <TextView
+                    android:id="@+id/votes_count_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/votes"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/votes_count_group"
+                    app:layout_constraintEnd_toEndOf="@id/votes_count"
+                    app:layout_constraintStart_toStartOf="@id/votes_count"
+                    app:layout_constraintTop_toBottomOf="@id/votes_count"
+                    tools:text="votes" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/votes_count_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="votes_count_label,votes_count"
+                    app:layout_constraintBottom_toTopOf="@id/vote_average_group"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/movie_image"
+                    app:layout_constraintTop_toTopOf="@id/movie_image" />
+
+                <TextView
+                    android:id="@+id/vote_average"
+                    style="@style/Widget.App.TextView.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:text="@{String.valueOf(movie.voteAverage)}"
+                    android:textSize="26sp"
+                    app:drawableStartCompat="@drawable/ic_star"
+                    app:layout_constraintBottom_toTopOf="@id/vote_average_label"
+                    app:layout_constraintEnd_toEndOf="@id/vote_average_group"
+                    app:layout_constraintStart_toStartOf="@id/vote_average_group"
+                    app:layout_constraintTop_toTopOf="@id/vote_average_group"
+                    tools:text="7.5" />
+
+                <TextView
+                    android:id="@+id/vote_average_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/vote_average_group"
+                    app:layout_constraintEnd_toEndOf="@id/vote_average"
+                    app:layout_constraintStart_toStartOf="@id/vote_average"
+                    app:layout_constraintTop_toBottomOf="@id/vote_average" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/vote_average_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="vote_average,vote_average_label"
+                    app:layout_constraintBottom_toBottomOf="@id/movie_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/movie_image"
+                    app:layout_constraintTop_toBottomOf="@id/votes_count_group" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/movie_image">
+
+                    <TextView
+                        style="@style/Widget.App.TextView.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/title" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@{movie.title}"
+                        android:textSize="18sp"
+                        tools:text="Batman versus Superman" />
+
+                    <TextView
+                        style="@style/Widget.App.TextView.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/genres" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textSize="18sp"
+                        app:genres="@{movie.genres}"
+                        tools:text="Action, Sci-Fi, Thriller" />
+
+                    <TextView
+                        style="@style/Widget.App.TextView.Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/overview" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@{movie.description}"
+                        android:textSize="18sp"
+                        tools:text="A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground fight clubs forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion." />
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/ui_loading_state"
+                layout="@layout/ui_load_state" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>
