@@ -26,8 +26,3 @@ fun TextView.bindGenres(genres: List<Genre>?) {
         text = TextUtils.join(", ", genres.map { genre -> genre.name })
     }
 }
-
-@BindingAdapter("rating")
-fun TextView.bindRating(voteAverage: Float) {
-    text = context.getString(R.string.rating_placeholder, voteAverage)
-}

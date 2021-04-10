@@ -11,8 +11,6 @@
     <string name="average">Average</string>
     <string name="genres">Genres</string>
     <string name="overview">Overview</string>
-
-    <string name="rating_placeholder">%1$.1f/10</string>
     <string name="movie_details">Movie Details</string>
     <string name="title">Title</string>
     <string name="movie_image">Movie image</string>

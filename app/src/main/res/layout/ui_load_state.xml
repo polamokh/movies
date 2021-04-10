@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
@@ -19,10 +18,9 @@
             android:id="@+id/loading_error_image"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_error"
             android:contentDescription="@string/information_icon"
+            android:src="@drawable/ic_error"
             android:visibility="gone"
-            app:tint="?attr/colorPrimary"
             tools:visibility="visible" />
 
         <TextView

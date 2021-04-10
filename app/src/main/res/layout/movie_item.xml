@@ -48,20 +48,22 @@
                 app:layout_constraintTop_toBottomOf="@id/movie_image">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="8dp"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    app:drawableStartCompat="@drawable/ic_star"
-                    app:rating="@{movie.voteAverage}"
-                    tools:text="8.1/10" />
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@{movie.title}"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     tools:text="X-Men 3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="8dp"
+                    android:text="@{String.valueOf(movie.voteAverage)}"
+                    android:textSize="18sp"
+                    app:drawableStartCompat="@drawable/ic_star"
+                    tools:text="8.1" />
 
             </LinearLayout>
 
