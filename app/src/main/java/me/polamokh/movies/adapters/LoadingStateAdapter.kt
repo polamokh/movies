@@ -1,4 +1,4 @@
-package me.polamokh.movies.adapter
+package me.polamokh.movies.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

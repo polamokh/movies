@@ -21,7 +21,7 @@ class SearchMoviesDataSource(private val tmdbService: TMDBService, private val q
             LoadResult.Page(
                 data = movies,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
-                nextKey = if (movies.isEmpty()) null else page + 1
+                nextKey = if (page == response.totalPages) null else page + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

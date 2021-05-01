@@ -2,8 +2,8 @@ package me.polamokh.movies.ui
 
 import androidx.fragment.app.Fragment
 import androidx.paging.LoadState
-import me.polamokh.movies.adapter.MovieAdapter
-import me.polamokh.movies.adapter.OnItemClickListener
+import me.polamokh.movies.adapters.MovieAdapter
+import me.polamokh.movies.utils.OnItemClickListener
 
 abstract class BaseFragment : Fragment() {
 

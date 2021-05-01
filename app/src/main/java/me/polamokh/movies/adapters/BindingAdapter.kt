@@ -1,4 +1,4 @@
-package me.polamokh.movies.utils
+package me.polamokh.movies.adapters
 
 import android.text.TextUtils
 import android.widget.ImageView

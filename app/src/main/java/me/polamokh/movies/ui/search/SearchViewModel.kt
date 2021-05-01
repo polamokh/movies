@@ -1,10 +1,17 @@
 package me.polamokh.movies.ui.search
 
-import androidx.lifecycle.*
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.switchMap
+import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
+import dagger.hilt.android.lifecycle.HiltViewModel
 import me.polamokh.movies.repo.TMDBRepository
+import javax.inject.Inject
 
-class SearchViewModel(private val tmdbRepository: TMDBRepository) : ViewModel() {
+@HiltViewModel
+class SearchViewModel @Inject constructor(private val tmdbRepository: TMDBRepository) :
+    ViewModel() {
 
     private val query = MutableLiveData<String>()
 
@@ -14,14 +21,5 @@ class SearchViewModel(private val tmdbRepository: TMDBRepository) : ViewModel() 
 
     fun searchMovies(query: String) {
         this.query.value = query
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    class Factory(private val tmdbRepository: TMDBRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(SearchViewModel::class.java))
-                return SearchViewModel(tmdbRepository) as T
-            throw IllegalArgumentException("Unable to construct viewModel")
-        }
     }
 }

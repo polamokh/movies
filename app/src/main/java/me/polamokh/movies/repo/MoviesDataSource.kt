@@ -5,13 +5,6 @@ import androidx.paging.PagingState
 import me.polamokh.movies.domain.Movie
 import me.polamokh.movies.network.TMDBService
 
-enum class MovieType {
-    NOW_PLAYING,
-    TOP_RATED
-}
-
-internal const val STARTING_PAGE_INDEX = 1
-
 class MoviesDataSource(
     private val tmdbService: TMDBService,
     private val movieType: MovieType
@@ -34,7 +27,7 @@ class MoviesDataSource(
             LoadResult.Page(
                 data = movies,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
-                nextKey = if (movies.isEmpty()) null else page + 1
+                nextKey = if (page == response.totalPages) null else page + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

@@ -12,10 +12,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-private const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
-private const val TMDB_API_KEY = BuildConfig.TMDB_API_KEY
-
 interface TMDBService {
+
     @GET("movie/now_playing?api_key=${TMDB_API_KEY}")
     suspend fun getNowPlaying(@Query("page") page: Int): ResponseDTO
 
@@ -27,19 +25,22 @@ interface TMDBService {
 
     @GET("movie/{movie_id}?api_key=${TMDB_API_KEY}")
     fun getDetailsAsync(@Path("movie_id") movieId: Int): Deferred<DetailedMovie>
-}
 
-private val moshi = Moshi.Builder()
-    .addLast(KotlinJsonAdapterFactory())
-    .build()
+    companion object {
+        const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
+        private const val TMDB_API_KEY = BuildConfig.TMDB_API_KEY
 
-object TMDBApi {
+        fun create(): TMDBService {
+            val moshi = Moshi.Builder()
+                .addLast(KotlinJsonAdapterFactory())
+                .build()
 
-    private val retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .baseUrl(TMDB_BASE_URL)
-        .build()
-
-    val service = retrofit.create(TMDBService::class.java)
+            return Retrofit.Builder()
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                .baseUrl(TMDB_BASE_URL)
+                .build()
+                .create(TMDBService::class.java)
+        }
+    }
 }

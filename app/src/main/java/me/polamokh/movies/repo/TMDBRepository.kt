@@ -4,26 +4,27 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import me.polamokh.movies.network.TMDBService
+import javax.inject.Inject
 
-private const val DEFAULT_PAGE_SIZE = 20
-
-class TMDBRepository(private val tmdbService: TMDBService) {
+class TMDBRepository @Inject constructor(private val service: TMDBService) {
 
     fun getNowPlayingMovies() = Pager(
         config = PagingConfig(DEFAULT_PAGE_SIZE, enablePlaceholders = false)
     ) {
-        MoviesDataSource(tmdbService, MovieType.NOW_PLAYING)
+        MoviesDataSource(service, MovieType.NOW_PLAYING)
     }.liveData
 
     fun getTopRatedMovies() = Pager(
         config = PagingConfig(DEFAULT_PAGE_SIZE, enablePlaceholders = false)
     ) {
-        MoviesDataSource(tmdbService, MovieType.TOP_RATED)
+        MoviesDataSource(service, MovieType.TOP_RATED)
     }.liveData
 
     fun searchMovies(query: String) = Pager(
         config = PagingConfig(DEFAULT_PAGE_SIZE, enablePlaceholders = false)
     ) {
-        SearchMoviesDataSource(tmdbService, query)
+        SearchMoviesDataSource(service, query)
     }.liveData
+
+    suspend fun getMovieDetails(movieId: Int) = service.getDetailsAsync(movieId).await()
 }

@@ -8,14 +8,16 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import dagger.hilt.android.AndroidEntryPoint
 import me.polamokh.movies.databinding.FragmentDetailsBinding
 import me.polamokh.movies.domain.DetailedMovie
 import me.polamokh.movies.utils.UiState
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private val args by navArgs<DetailsFragmentArgs>()
-    private val viewModel by viewModels<DetailsViewModel>()
+    private val viewModel: DetailsViewModel by viewModels()
     private lateinit var binding: FragmentDetailsBinding
 
     override fun onCreateView(
@@ -26,8 +28,8 @@ class DetailsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         if (savedInstanceState == null) {
             viewModel.getMovieDetails(args.movieId)

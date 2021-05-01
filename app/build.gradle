@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
 }
 
 def apiKeyPropertiesFile = rootProject.file("apikey.properties")
@@ -11,7 +12,7 @@ apiKeyProperties.load(new FileInputStream(apiKeyPropertiesFile))
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "me.polamokh.movies"
@@ -23,6 +24,7 @@ android {
         buildConfigField "String", "TMDB_API_KEY", apiKeyProperties['TMDB_API_KEY']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        proguardFiles
     }
     buildFeatures {
         dataBinding true
@@ -72,6 +74,10 @@ dependencies {
 
     //Paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    //Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

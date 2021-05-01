@@ -1,4 +1,4 @@
-package me.polamokh.movies.adapter
+package me.polamokh.movies.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.polamokh.movies.databinding.MovieItemBinding
 import me.polamokh.movies.domain.Movie
+import me.polamokh.movies.utils.OnItemClickListener
 
-class MovieAdapter(private val onItemClickListener: OnItemClickListener) :
+class MovieAdapter(private val onItemClickListener: OnItemClickListener<Int>) :
     PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(movieDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -58,5 +59,3 @@ class MovieAdapter(private val onItemClickListener: OnItemClickListener) :
         }
     }
 }
-
-class OnItemClickListener(val clickListener: (movieId: Int) -> Unit)

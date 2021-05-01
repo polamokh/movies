@@ -4,19 +4,19 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import dagger.hilt.android.AndroidEntryPoint
 import me.polamokh.movies.R
-import me.polamokh.movies.adapter.LoadingStateAdapter
+import me.polamokh.movies.adapters.LoadingStateAdapter
 import me.polamokh.movies.databinding.FragmentSearchBinding
-import me.polamokh.movies.network.TMDBApi
-import me.polamokh.movies.repo.TMDBRepository
 import me.polamokh.movies.ui.BaseFragment
 
+@AndroidEntryPoint
 class SearchFragment : BaseFragment() {
 
-    private lateinit var viewModel: SearchViewModel
+    private val viewModel: SearchViewModel by viewModels()
     private lateinit var binding: FragmentSearchBinding
 
     override fun onCreateView(
@@ -27,11 +27,8 @@ class SearchFragment : BaseFragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel =
-            ViewModelProvider(this, SearchViewModel.Factory(TMDBRepository(TMDBApi.service)))
-                .get(SearchViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         super.handleUiStates()
 
