@@ -11,6 +11,8 @@ It's created using:
 - MVVM Design Pattern
 
 ## Screenshots
-<img src="screenshoots\1.png" width="250">
-<img src="screenshoots\2.png" width="250">
-<img src="screenshoots\3.png" width="250">
+<p align="center">
+    <img src="screenshoots\1.png" width="200">
+    <img src="screenshoots\2.png" width="200">
+    <img src="screenshoots\3.png" width="200">
+</p>
